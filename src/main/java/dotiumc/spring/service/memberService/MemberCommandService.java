@@ -5,5 +5,5 @@ import dotiumc.spring.web.dto.MemberRequestDTO;
 
 public interface MemberCommandService {
 
-    Member joinMember(MemberRequestDTO.JoinDTO request);
+    Member joinMember(MemberRequestDTO.JoinDto request);
 }

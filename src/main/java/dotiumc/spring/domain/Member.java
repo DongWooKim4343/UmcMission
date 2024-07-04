@@ -9,18 +9,24 @@ import dotiumc.spring.domain.mapping.MemberMission;
 import dotiumc.spring.domain.mapping.MemberPrefer;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Builder
 @Entity
 @Getter
+@Setter
+@DynamicUpdate
+@DynamicInsert
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,17 +49,18 @@ public class Member extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
-    private MemberStatus memberStatus;
+    private MemberStatus status;
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
+    //    @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberAgree> memberAgreesList = new ArrayList<>();
+    private List<MemberAgree> memberAgreeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberPrefer> memberPreferList = new ArrayList<>();

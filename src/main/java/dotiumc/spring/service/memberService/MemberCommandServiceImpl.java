@@ -30,7 +30,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
     @Override
     @Transactional
-    public Member joinMember(MemberRequestDTO.JoinDTO request) {
+    public Member joinMember(MemberRequestDTO.JoinDto request) {
 
         Member newMember = MemberConverter.toMember(request);
         List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()

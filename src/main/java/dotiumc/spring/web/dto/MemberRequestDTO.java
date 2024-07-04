@@ -1,5 +1,6 @@
 package dotiumc.spring.web.dto;
 
+import dotiumc.spring.domain.validation.annotation.ExistCategories;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,7 @@ import java.util.List;
 public class MemberRequestDTO {
 
     @Getter
-    public static class JoinDTO {
+    public static class JoinDto{
         @NotBlank
         String name;
         @NotNull
